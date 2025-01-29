@@ -1,0 +1,15 @@
+{
+    "name": "acf/hero-section",
+    "title": "Hero Section",
+    "description": "Sekcja główna strony",
+    "category": "cst-adwise-blocks",
+    "icon": "align-wide",
+    "keywords": ["hero", "główna", "banner"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "inc/blocks/hero-section/template.php"
+    },
+    "supports": {
+        "align": true
+    }
+}

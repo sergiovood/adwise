@@ -12,6 +12,16 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.0' );
 }
 
+
+define('THEME_PATH', get_template_directory());
+define('THEME_URL', get_template_directory_uri());
+
+// Dodaj tę funkcję do functions.php
+function register_acf_blocks() {
+    register_block_type(THEME_PATH . '/inc/blocks/hero-section');
+}
+add_action('init', 'register_acf_blocks');
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -20,6 +30,11 @@ if ( ! defined( '_S_VERSION' ) ) {
  * as indicating support for post thumbnails.
  */
 function cst_adwise_setup() {
+	// Wsparcie dla bloków Gutenberga
+	add_theme_support('editor-styles');
+    add_theme_support('responsive-embeds');
+    add_theme_support('align-wide');
+	
 	/*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
@@ -102,6 +117,21 @@ function cst_adwise_setup() {
 }
 add_action( 'after_setup_theme', 'cst_adwise_setup' );
 
+
+
+// Rejestracja kategorii bloków
+function cst_adwise_block_categories($categories) {
+    return array_merge(
+        array(
+            array(
+                'slug'  => 'cst-adwise-blocks',
+                'title' => __('Adwise Blocks', 'cst-adwise'),
+            ),
+        ),
+        $categories
+    );
+}
+add_filter('block_categories_all', 'cst_adwise_block_categories', 10, 1);
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
@@ -152,37 +182,27 @@ add_action( 'wp_enqueue_scripts', 'cst_adwise_scripts' );
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+require_once get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require_once get_template_directory() . '/inc/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require_once get_template_directory() . '/inc/template-functions.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require_once get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+	require_once get_template_directory() . '/inc/jetpack.php';
 }
 
-/**
- * CUSTOM ADWISE THEME.
- */
-function custom_theme_scripts() {
-    wp_enqueue_style('main-style', get_stylesheet_uri()); // Główny CSS
-    wp_enqueue_style('custom-style', get_template_directory_uri() . '/assets/css/custom.css'); // Własne style
-
-    wp_enqueue_script('custom-js', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), false, true);
-}
-add_action('wp_enqueue_scripts', 'custom_theme_scripts');
