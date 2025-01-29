@@ -1,0 +1,17 @@
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: #111;
+    color: #fff;
+}
+
+.opinions-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.opinion {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+}

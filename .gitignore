@@ -1,0 +1,54 @@
+# 🛑 Pliki systemowe
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*.swp
+*.swo
+*.swn
+
+# 🛑 WordPress core
+wp-config.php
+wp-config-sample.php
+wp-settings.php
+wp-admin/
+wp-includes/
+
+# 🛑 Uploads
+wp-content/uploads/
+wp-content/upgrade/
+
+# 🛑 Wtyczki i motywy
+wp-content/plugins/
+wp-content/mu-plugins/
+wp-content/cache/
+wp-content/themes/twenty*/
+wp-content/languages/
+
+# 🟢 Wersjonowac tylko wlasny motyw:
+!wp-content/themes/cst-adwise/
+
+# 🛑 Pliki Composer i Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+vendor/
+composer.lock
+.env
+
+# 🛑 Pliki systemowe VS Code i innych edytorów
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 🛑 Pliki z kompilacji CSS/JS 
+*.map
+*.min.css
+*.min.js
+
+# 🛑 Bazy danych i eksporty
+*.sql
+*.sqlite
+*.db
