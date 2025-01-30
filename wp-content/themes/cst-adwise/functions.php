@@ -171,6 +171,14 @@ function cst_adwise_scripts() {
 	// Style glówne
 	wp_enqueue_style( 'cst-adwise-style', get_stylesheet_uri(), array(), _S_VERSION );
 
+	// Fonts
+    wp_enqueue_style(
+        'cst-adwise-fonts',
+        get_template_directory_uri() . '/assets/css/fonts.css',
+        array(),
+        '1.0.0'
+    );
+	
 	// Style bloków
     wp_enqueue_style(
         'cst-adwise-hero', 
