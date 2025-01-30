@@ -168,7 +168,16 @@ add_action( 'widgets_init', 'cst_adwise_widgets_init' );
  * Enqueue scripts and styles.
  */
 function cst_adwise_scripts() {
+	// Style glówne
 	wp_enqueue_style( 'cst-adwise-style', get_stylesheet_uri(), array(), _S_VERSION );
+
+	// Style bloków
+    wp_enqueue_style(
+        'cst-adwise-hero', 
+        get_template_directory_uri() . '/assets/css/blocks/hero-section.css',
+        array(),
+        '1.0.0'
+    );
 	wp_style_add_data( 'cst-adwise-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'cst-adwise-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
@@ -178,6 +187,8 @@ function cst_adwise_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'cst_adwise_scripts' );
+
+
 
 /**
  * Implement the Custom Header feature.
@@ -206,3 +217,23 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require_once get_template_directory() . '/inc/jetpack.php';
 }
 
+// Formatowanie linku w bloku hero-section
+function cst_adwise_format_link($link) {
+    // Jeśli link jest pusty, zwróć #
+    if (empty($link)) {
+        return '#';
+    }
+    
+    // Jeśli link już zawiera http lub https, zwróć go bez zmian
+    if (strpos($link, 'http') === 0) {
+        return $link;
+    }
+    
+    // Jeśli link zaczyna się od # lub /, zwróć go bez zmian
+    if (strpos($link, '#') === 0 || strpos($link, '/') === 0) {
+        return $link;
+    }
+    
+    // W przeciwnym razie dodaj / na początku
+    return '/' . $link;
+}
