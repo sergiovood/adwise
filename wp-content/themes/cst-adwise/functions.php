@@ -16,6 +16,17 @@ if ( ! defined( '_S_VERSION' ) ) {
 define('THEME_PATH', get_template_directory());
 define('THEME_URL', get_template_directory_uri());
 
+// Dodanie strony opcji motywu
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page(array(
+        'page_title' => 'Ustawienia Motywu',
+        'menu_title' => 'Ustawienia Motywu',
+        'menu_slug'  => 'theme-general-settings',
+        'capability' => 'edit_posts',
+        'redirect'   => false
+    ));
+}
+
 // Dodaj tę funkcję do functions.php
 function register_acf_blocks() {
     register_block_type(THEME_PATH . '/inc/blocks/hero-section');
@@ -168,35 +179,56 @@ add_action( 'widgets_init', 'cst_adwise_widgets_init' );
  * Enqueue scripts and styles.
  */
 function cst_adwise_scripts() {
-	// Style glówne
-	wp_enqueue_style( 'cst-adwise-style', get_stylesheet_uri(), array(), _S_VERSION );
+    $theme_version = defined('_S_VERSION') ? _S_VERSION : '1.0.0';
 
-	// Fonts
-    wp_enqueue_style(
-        'cst-adwise-fonts',
-        get_template_directory_uri() . '/assets/css/fonts.css',
-        array(),
-        '1.0.0'
+    // Lista stylów do załadowania
+    $styles = array(
+        'cst-adwise-style' => get_stylesheet_uri(),
+        'cst-adwise-fonts' => THEME_URL . '/assets/css/fonts.css',
+        'cst-adwise-hero'  => THEME_URL . '/assets/css/blocks/hero-section.css',
+		'cst-adwise-custom' => THEME_URL . '/assets/css/custom.css',
     );
-	
-	// Style bloków
-    wp_enqueue_style(
-        'cst-adwise-hero', 
-        get_template_directory_uri() . '/assets/css/blocks/hero-section.css',
-        array(),
-        '1.0.0'
-    );
-	wp_style_add_data( 'cst-adwise-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'cst-adwise-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+    // Dodawanie stylów w pętli
+    foreach ($styles as $handle => $src) {
+        wp_enqueue_style($handle, $src, array(), $theme_version);
+    }
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+    // Dodanie obsługi RTL, jeśli strona używa języka RTL
+    if (is_rtl()) {
+        wp_style_add_data('cst-adwise-style', 'rtl', 'replace');
+    }
+
+    // Skrypty
+    wp_enqueue_script('cst-adwise-navigation', THEME_URL . '/js/navigation.js', array(), $theme_version, true);
+
+    // Obsługa wątkowanych komentarzy
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
 }
-add_action( 'wp_enqueue_scripts', 'cst_adwise_scripts' );
+add_action('wp_enqueue_scripts', 'cst_adwise_scripts');
 
-
+// Formatowanie linku w bloku hero-section
+function cst_adwise_format_link($link) {
+    // Jeśli link jest pusty, zwróć #
+    if (empty($link)) {
+        return '#';
+    }
+    
+    // Jeśli link już zawiera http lub https, zwróć go bez zmian
+    if (strpos($link, 'http') === 0) {
+        return $link;
+    }
+    
+    // Jeśli link zaczyna się od # lub /, zwróć go bez zmian
+    if (strpos($link, '#') === 0 || strpos($link, '/') === 0) {
+        return $link;
+    }
+    
+    // W przeciwnym razie dodaj / na początku
+    return '/' . $link;
+}
 
 /**
  * Implement the Custom Header feature.
@@ -223,25 +255,4 @@ require_once get_template_directory() . '/inc/customizer.php';
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require_once get_template_directory() . '/inc/jetpack.php';
-}
-
-// Formatowanie linku w bloku hero-section
-function cst_adwise_format_link($link) {
-    // Jeśli link jest pusty, zwróć #
-    if (empty($link)) {
-        return '#';
-    }
-    
-    // Jeśli link już zawiera http lub https, zwróć go bez zmian
-    if (strpos($link, 'http') === 0) {
-        return $link;
-    }
-    
-    // Jeśli link zaczyna się od # lub /, zwróć go bez zmian
-    if (strpos($link, '#') === 0 || strpos($link, '/') === 0) {
-        return $link;
-    }
-    
-    // W przeciwnym razie dodaj / na początku
-    return '/' . $link;
 }

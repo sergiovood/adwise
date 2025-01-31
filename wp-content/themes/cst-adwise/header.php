@@ -22,6 +22,15 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<?php 
+$background_video = get_field('background_video', 'option');
+if ($background_video): ?>
+    <div class="background-video-wrapper">
+        <video class="background-video" playsinline autoplay muted loop>
+            <source src="<?php echo esc_url($background_video); ?>" type="video/webm">
+        </video>
+    </div>
+<?php endif; ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'cst-adwise' ); ?></a>
 
