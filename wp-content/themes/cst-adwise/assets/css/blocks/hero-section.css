@@ -1,51 +1,85 @@
 .hero-section {
     background-color: #000;
     color: #fff;
-    padding: 80px 0;
+    padding: 120px 0 80px;
     position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
 }
 
 .container {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #A7B6BD;
+}
+
+.hero-main {
+    max-width: 800px;
 }
 
 .hero-heading {
-    font-family: 'ClashDisplay-Regular';
-    font-size: 48px;
+    font-size: 3.2rem;
+    line-height: 1.2;
+    margin-bottom: 40px;
     font-weight: 400;
-    line-height: 60px;
-    margin-bottom: 24px;
-    max-width: 824px;
+}
+
+.hero-bottom {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
 }
 
 .hero-subheading {
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 1.5;
-    margin-bottom: 32px;
-    max-width: 600px;
+    max-width: 520px;
+    margin: 0;
 }
 
 .hero-cta {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background-color: #7243E8;
     color: #fff;
     padding: 16px 32px;
-    border-radius: 4px;
+    border-radius: 100px;
     text-decoration: none;
     font-weight: 500;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
 .hero-cta:hover {
     background-color: #5C35C6;
 }
 
+.scroll-text {
+    font-size: 1rem;
+    color: #fff;
+    opacity: 0.8;
+    width: 145px;
+}
+
 /* RWD */
 @media (max-width: 1440px) {
     .container {
         max-width: 1200px;
+    }
+    .hero-heading {
+        font-size: 56px;
     }
 }
 
@@ -54,18 +88,26 @@
         max-width: 960px;
     }
     .hero-heading {
-        font-size: 40px;
+        font-size: 48px;
+    }
+    .hero-bottom {
+        flex-direction: column;
+        gap: 20px;
     }
 }
 
 @media (max-width: 390px) {
     .hero-section {
-        padding: 40px 0;
+        padding: 100px 0 40px;
     }
     .hero-heading {
-        font-size: 32px;
+        font-size: 36px;
+        margin-bottom: 24px;
     }
     .hero-subheading {
         font-size: 16px;
+    }
+    .scroll-text {
+        display: none;
     }
 }

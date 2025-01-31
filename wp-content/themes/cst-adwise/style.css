@@ -416,6 +416,7 @@ h3,
 h4,
 h5,
 h6 {
+	font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	clear: both;
 }
 
