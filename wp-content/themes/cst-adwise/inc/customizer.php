@@ -31,6 +31,56 @@ function cst_adwise_customize_register( $wp_customize ) {
 			)
 		);
 	}
+
+	// Sekcja przycisków w menu - link do społeczności i aplikowania.
+	$wp_customize->add_section('header_buttons', array(
+		'title'    => __('Przyciski w headerze', 'cst-adwise'),
+		'priority' => 30,
+	));
+
+	// Link do społeczności
+	$wp_customize->add_setting('header_community_link', array(
+		'default'           => '#',
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control('header_community_link', array(
+		'label'   => __('Link do społeczności', 'cst-adwise'),
+		'section' => 'header_buttons',
+		'type'    => 'url',
+	));
+
+	// Tekst przycisku społeczności
+	$wp_customize->add_setting('header_community_text', array(
+		'default'           => 'Dołącz do społeczności',
+		'sanitize_callback' => 'sanitize_text_field',
+	));
+	$wp_customize->add_control('header_community_text', array(
+		'label'   => __('Tekst linku do społeczności', 'cst-adwise'),
+		'section' => 'header_buttons',
+		'type'    => 'text',
+	));
+
+	// Link do aplikowania
+	$wp_customize->add_setting('header_apply_link', array(
+		'default'           => '#',
+		'sanitize_callback' => 'esc_url_raw',
+	));
+	$wp_customize->add_control('header_apply_link', array(
+		'label'   => __('Link do aplikowania', 'cst-adwise'),
+		'section' => 'header_buttons',
+		'type'    => 'url',
+	));
+
+	// Tekst przycisku aplikowania
+	$wp_customize->add_setting('header_apply_text', array(
+		'default'           => 'Aplikuj',
+		'sanitize_callback' => 'sanitize_text_field',
+	));
+	$wp_customize->add_control('header_apply_text', array(
+		'label'   => __('Tekst przycisku aplikowania', 'cst-adwise'),
+		'section' => 'header_buttons',
+		'type'    => 'text',
+	));
 }
 add_action( 'customize_register', 'cst_adwise_customize_register' );
 

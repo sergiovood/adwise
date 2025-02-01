@@ -128,8 +128,6 @@ function cst_adwise_setup() {
 }
 add_action( 'after_setup_theme', 'cst_adwise_setup' );
 
-
-
 // Rejestracja kategorii bloków
 function cst_adwise_block_categories($categories) {
     return array_merge(
@@ -143,6 +141,7 @@ function cst_adwise_block_categories($categories) {
     );
 }
 add_filter('block_categories_all', 'cst_adwise_block_categories', 10, 1);
+
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
@@ -187,6 +186,7 @@ function cst_adwise_scripts() {
         'cst-adwise-fonts' => THEME_URL . '/assets/css/fonts.css',
         'cst-adwise-hero'  => THEME_URL . '/assets/css/blocks/hero-section.css',
 		'cst-adwise-custom' => THEME_URL . '/assets/css/custom.css',
+		'cst-adwise-header' => THEME_URL . '/assets/css/blocks/header-menu.css',
     );
 
     // Dodawanie stylów w pętli
@@ -208,27 +208,6 @@ function cst_adwise_scripts() {
     }
 }
 add_action('wp_enqueue_scripts', 'cst_adwise_scripts');
-
-// Formatowanie linku w bloku hero-section
-function cst_adwise_format_link($link) {
-    // Jeśli link jest pusty, zwróć #
-    if (empty($link)) {
-        return '#';
-    }
-    
-    // Jeśli link już zawiera http lub https, zwróć go bez zmian
-    if (strpos($link, 'http') === 0) {
-        return $link;
-    }
-    
-    // Jeśli link zaczyna się od # lub /, zwróć go bez zmian
-    if (strpos($link, '#') === 0 || strpos($link, '/') === 0) {
-        return $link;
-    }
-    
-    // W przeciwnym razie dodaj / na początku
-    return '/' . $link;
-}
 
 /**
  * Implement the Custom Header feature.
@@ -255,4 +234,25 @@ require_once get_template_directory() . '/inc/customizer.php';
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require_once get_template_directory() . '/inc/jetpack.php';
+}
+
+// Formatowanie linku w bloku hero-section
+function cst_adwise_format_link($link) {
+    // Jeśli link jest pusty, zwróć #
+    if (empty($link)) {
+        return '#';
+    }
+    
+    // Jeśli link już zawiera http lub https, zwróć go bez zmian
+    if (strpos($link, 'http') === 0) {
+        return $link;
+    }
+    
+    // Jeśli link zaczyna się od # lub /, zwróć go bez zmian
+    if (strpos($link, '#') === 0 || strpos($link, '/') === 0) {
+        return $link;
+    }
+    
+    // W przeciwnym razie dodaj / na początku
+    return '/' . $link;
 }

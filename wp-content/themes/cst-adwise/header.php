@@ -32,37 +32,36 @@ if ($background_video): ?>
     </div>
 <?php endif; ?>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'cst-adwise' ); ?></a>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="<?php echo home_url(); ?>" class="logo">
+                <?php
+                $custom_logo_id = get_theme_mod('custom_logo');
+                $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                if ($logo) :
+                ?>
+                    <img src="<?php echo esc_url($logo[0]); ?>" alt="<?php echo get_bloginfo('name'); ?>" class="logo-img">
+                <?php endif; ?>
+            </a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$cst_adwise_description = get_bloginfo( 'description', 'display' );
-			if ( $cst_adwise_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $cst_adwise_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+            <nav id="site-navigation" class="main-navigation">
+                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                    <?php esc_html_e('Menu', 'cst-adwise'); ?>
+                </button>
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'menu-1',
+                    'menu_id'        => 'primary-menu',
+                ));
+                ?>
+            </nav>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'cst-adwise' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+            <div class="header-buttons">
+				<a href="<?php echo esc_url(get_theme_mod('header_community_link', '#')); ?>" class="header-link">
+					<?php echo esc_html(get_theme_mod('header_community_text', 'Dołącz do społeczności')); ?>
+				</a>
+				<a href="<?php echo esc_url(get_theme_mod('header_apply_link', '#')); ?>" class="header-button">
+					<?php echo esc_html(get_theme_mod('header_apply_text', 'Aplikuj')); ?>
+				</a>
+			</div>
+    </header><!-- #masthead -->
