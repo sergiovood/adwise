@@ -30,6 +30,7 @@ if (function_exists('acf_add_options_page')) {
 // Dodaj tę funkcję do functions.php
 function register_acf_blocks() {
     register_block_type(THEME_PATH . '/inc/blocks/hero-section');
+	register_block_type(THEME_PATH . '/inc/blocks/text-section');
 }
 add_action('init', 'register_acf_blocks');
 
@@ -175,7 +176,7 @@ function cst_adwise_widgets_init() {
 add_action( 'widgets_init', 'cst_adwise_widgets_init' );
 
 /**
- * Enqueue scripts and styles.
+ * Customowe style i skrypty.
  */
 function cst_adwise_scripts() {
     $theme_version = defined('_S_VERSION') ? _S_VERSION : '1.0.0';
@@ -184,9 +185,9 @@ function cst_adwise_scripts() {
     $styles = array(
         'cst-adwise-style' => get_stylesheet_uri(),
         'cst-adwise-fonts' => THEME_URL . '/assets/css/fonts.css',
-        'cst-adwise-hero'  => THEME_URL . '/assets/css/blocks/hero-section.css',
 		'cst-adwise-custom' => THEME_URL . '/assets/css/custom.css',
-		'cst-adwise-header' => THEME_URL . '/assets/css/blocks/header-menu.css',
+        'cst-adwise-hero'  => THEME_URL . '/assets/css/blocks/hero-section.css',
+		'cst-adwise-text-section' => THEME_URL . '/assets/css/blocks/text-section.css',
     );
 
     // Dodawanie stylów w pętli

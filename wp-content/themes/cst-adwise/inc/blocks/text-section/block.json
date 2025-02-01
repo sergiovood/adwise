@@ -1,0 +1,15 @@
+{
+    "name": "acf/text-section",
+    "title": "Text Section",
+    "description": "Sekcja z tekstem głównym i wyróżnionym",
+    "category": "cst-adwise-blocks",
+    "icon": "text",
+    "keywords": ["tekst", "sekcja", "nagłówek"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "inc/blocks/text-section/template.php"
+    },
+    "supports": {
+        "align": true
+    }
+}
