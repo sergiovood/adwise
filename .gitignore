@@ -52,3 +52,7 @@ composer.lock
 *.sql
 *.sqlite
 *.db
+
+# 🛑 Ignorowanie wiekszych plikow graficznych
+*.png size>500kb
+*.jpg size>500kb

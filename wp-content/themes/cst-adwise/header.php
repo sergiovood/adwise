@@ -52,6 +52,7 @@ if ($background_video): ?>
                 wp_nav_menu(array(
                     'theme_location' => 'menu-1',
                     'menu_id'        => 'primary-menu',
+					'fallback_cb'    => false,
                 ));
                 ?>
             </nav>
@@ -64,4 +65,5 @@ if ($background_video): ?>
 					<?php echo esc_html(get_theme_mod('header_apply_text', 'Aplikuj')); ?>
 				</a>
 			</div>
+		</div>
     </header><!-- #masthead -->
