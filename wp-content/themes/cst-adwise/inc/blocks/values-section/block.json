@@ -1,0 +1,15 @@
+{
+    "name": "acf/values-section",
+    "title": "Values Section",
+    "description": "Sekcja z listą wartości firmy",
+    "category": "cst-adwise-blocks",
+    "icon": "list-view",
+    "keywords": ["wartości", "zasady", "lista"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "inc/blocks/values-section/template.php"
+    },
+    "supports": {
+        "align": true
+    }
+}

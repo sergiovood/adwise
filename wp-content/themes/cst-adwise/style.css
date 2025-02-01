@@ -838,7 +838,7 @@ textarea {
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+	background: radial-gradient(55.01% 51.34% at 50.87% 45.06%, rgba(15, 18, 25, 0) 37.7%, #0F1219 100%);
 }
 
 .page-links {

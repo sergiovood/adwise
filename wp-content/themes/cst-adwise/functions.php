@@ -31,6 +31,7 @@ if (function_exists('acf_add_options_page')) {
 function register_acf_blocks() {
     register_block_type(THEME_PATH . '/inc/blocks/hero-section');
 	register_block_type(THEME_PATH . '/inc/blocks/text-section');
+	register_block_type(THEME_PATH . '/inc/blocks/values-section');
 }
 add_action('init', 'register_acf_blocks');
 
@@ -188,6 +189,7 @@ function cst_adwise_scripts() {
 		'cst-adwise-custom' => THEME_URL . '/assets/css/custom.css',
         'cst-adwise-hero'  => THEME_URL . '/assets/css/blocks/hero-section.css',
 		'cst-adwise-text-section' => THEME_URL . '/assets/css/blocks/text-section.css',
+		'cst-adwise-values' => THEME_URL . '/assets/css/blocks/values-section.css',
     );
 
     // Dodawanie stylów w pętli
