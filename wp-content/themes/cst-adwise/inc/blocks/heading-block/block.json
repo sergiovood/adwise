@@ -1,0 +1,12 @@
+{
+    "name": "acf/heading-block",
+    "title": "Heading Block",
+    "description": "Sekcja nagłówkowa z wyróżnionym tekstem",
+    "category": "cst-adwise-blocks",
+    "icon": "heading",
+    "keywords": ["nagłówek", "sekcja", "tekst główny"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "template.php"
+    }
+}

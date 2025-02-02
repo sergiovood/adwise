@@ -1,16 +1,16 @@
 .hero-section {
     color: #fff;
-    padding: 120px 107px 80px;
+    padding: 120px 0 80px;
     position: relative;
     min-height: 80vh;
     display: flex;
     align-items: center;
 }
 
-.container {
+.hero-section .container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 107px;
     width: 100%;
 }
 

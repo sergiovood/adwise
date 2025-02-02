@@ -4,7 +4,7 @@
  */
 
  
- $heading = get_field('heading');
+$heading = get_field('heading');
 $subheading = get_field('subheading');
 $cta_text = get_field('cta_text');
 $cta_link = get_field('cta_link');

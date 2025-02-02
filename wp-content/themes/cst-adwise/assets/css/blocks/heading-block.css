@@ -1,0 +1,54 @@
+.heading-block {
+    padding: 80px 0;
+    background-color: #0F1219;
+}
+
+.heading-block .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 107px;
+}
+
+
+.heading-block__content {
+    font-family: 'ClashDisplay-Regular', sans-serif;
+    font-size: 64px;
+    line-height: 1.2;
+    font-weight: 400;
+    max-width: 100%;
+    margin: 0;
+    color: #fff;
+    border-bottom: 1px solid #A7B6BD;
+    padding-bottom: 40px;
+}
+
+.heading-block__highlight {
+    color: #7243E8;
+}
+
+.heading-block__text {
+    color: #fff;
+}
+
+/* RWD */
+@media (max-width: 1440px) {
+    .heading-block__content {
+        font-size: 56px;
+    }
+}
+
+@media (max-width: 1080px) {
+    .heading-block__content {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 390px) {
+    .heading-block {
+        padding: 40px 0;
+    }
+    
+    .heading-block__content {
+        font-size: 36px;
+    }
+}

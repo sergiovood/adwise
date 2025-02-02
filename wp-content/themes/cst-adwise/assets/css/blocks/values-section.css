@@ -4,10 +4,10 @@
     color: #fff;
 }
 
-.container {
+.values-section .container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 107px;
 }
 
 .values-section__content {
@@ -16,6 +16,8 @@
     gap: 120px;
     align-items: start;
     height: 100%; 
+    border-bottom: 1px solid #A7B6BD;
+    padding-bottom: 128px;
 }
 
 .values-section__image {
