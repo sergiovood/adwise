@@ -11,22 +11,33 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'cst-adwise' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'cst-adwise' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'cst-adwise' ), 'cst-adwise', '<a href="http://geniuspage.pl">Sergiusz</a>' );
-				?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <?php 
+                $custom_logo_id = get_theme_mod('custom_logo');
+                $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                if ($logo) : 
+                ?>
+                    <img src="<?php echo esc_url($logo[0]); ?>" alt="<?php echo get_bloginfo('name'); ?>" class="footer-logo-img">
+                <?php endif; ?>
+            </div>
+            <nav class="footer-navigation">
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'footer-menu',
+                    'menu_class'     => 'footer-menu',
+                    'container'      => false,
+                ));
+                ?>
+            </nav>
+            <div class="footer-policy">
+                <a href="/polityka-prywatnosci" class="footer-policy-link">Polityka prywatności</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <?php wp_footer(); ?>
 

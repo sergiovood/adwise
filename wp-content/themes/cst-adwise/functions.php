@@ -78,6 +78,7 @@ function cst_adwise_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'cst-adwise' ),
+			'footer-menu' => esc_html__('Footer Menu', 'cst-adwise'),
 		)
 	);
 
