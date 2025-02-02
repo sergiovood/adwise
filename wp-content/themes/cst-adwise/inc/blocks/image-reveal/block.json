@@ -1,0 +1,15 @@
+{
+    "name": "acf/image-reveal",
+    "title": "Image Reveal Animation",
+    "description": "Animowana sekcja ze zdjęciem i maską",
+    "category": "cst-adwise-blocks",
+    "icon": "images-alt2",
+    "keywords": ["image", "animation", "reveal"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "inc/blocks/image-reveal/template.php"
+    },
+    "supports": {
+        "align": true
+    }
+}

@@ -32,6 +32,7 @@ function register_acf_blocks() {
     register_block_type(THEME_PATH . '/inc/blocks/hero-section');
 	register_block_type(THEME_PATH . '/inc/blocks/values-section');
 	register_block_type(THEME_PATH . '/inc/blocks/heading-block');
+	register_block_type(THEME_PATH . '/inc/blocks/image-reveal');
 }
 add_action('init', 'register_acf_blocks');
 
@@ -191,6 +192,7 @@ function cst_adwise_scripts() {
         'cst-adwise-hero'  => THEME_URL . '/assets/css/blocks/hero-section.css',
 		'cst-adwise-values' => THEME_URL . '/assets/css/blocks/values-section.css',
 		'cst-adwise-heading' => THEME_URL . '/assets/css/blocks/heading-block.css',
+		'cst-adwise-image-reveal', THEME_URL . '/assets/css/blocks/image-reveal.css',
     );
 
     // Dodawanie stylów w pętli
@@ -205,6 +207,30 @@ function cst_adwise_scripts() {
 
     // Skrypty
     wp_enqueue_script('cst-adwise-navigation', THEME_URL . '/js/navigation.js', array(), $theme_version, true);
+	wp_enqueue_script(
+        'gsap',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+        array(),
+        '3.12.5',
+        true
+    );
+
+    wp_enqueue_script(
+        'gsap-scroll-trigger',
+        'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+        array('gsap'),
+        '3.12.5',
+        true
+    );
+
+    // Skrypt animacji
+    wp_enqueue_script(
+        'cst-adwise-image-reveal',
+        get_template_directory_uri() . '/assets/js/blocks/image-reveal.js',
+        array('gsap', 'gsap-scroll-trigger'),
+        '1.0.0',
+        true
+    );
 
     // Obsługa wątkowanych komentarzy
     if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -260,3 +286,21 @@ function cst_adwise_format_link($link) {
     // W przeciwnym razie dodaj / na początku
     return '/' . $link;
 }
+
+// Mozliwosc przeslanie pliku SVG do mediów w WordPress
+function allow_svg_upload($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'allow_svg_upload');
+
+// Usuwanie skryptów z plików SVG w WordPress (zabezpieczenie przed atakami XSS)
+function sanitize_svg($file, $filename, $mimes, $real_mime) {
+    if ($real_mime === 'image/svg+xml') {
+        $file_contents = file_get_contents($file);
+        $file_contents = preg_replace('/<script.*?<\/script>/is', '', $file_contents);
+        file_put_contents($file, $file_contents);
+    }
+    return $file;
+}
+add_filter('wp_check_filetype_and_ext', 'sanitize_svg', 10, 4);
