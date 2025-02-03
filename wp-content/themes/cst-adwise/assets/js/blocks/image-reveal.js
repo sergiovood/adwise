@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             onUpdate: function(self) {
                 if (self.progress > 0.85) {
                     gsap.set('.bg-section', {
-                        opacity: 1 - (self.progress - 0.85) * 2
+                        opacity: 1 - (self.progress - 0.85) * 20
                     });
                     if (self.progress > 0.95) {
                         gsap.set('.bg-image-under', { zIndex: 99 });
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Animacje
     tl.to('.bg-section', {
-        scale: 15, // Zmniejszony scale dla lepszego efektu
+        scale: 20, // Zmniejszony scale dla lepszego efektu
         duration: 1
     })
     .to('.bg-image-under', {

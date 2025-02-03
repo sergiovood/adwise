@@ -1,0 +1,17 @@
+{
+    "name": "acf/testimonials-slider",
+    "title": "Testimonials Slider",
+    "description": "Slider z opiniami uczestników",
+    "category": "cst-adwise-blocks",
+    "icon": "testimonial",
+    "keywords": ["testimonials", "slider", "opinie", "referencje"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "inc/blocks/testimonials-slider/template.php"
+    },
+    "supports": {
+        "align": true,
+        "anchor": true,
+        "jsx": false
+    }
+}

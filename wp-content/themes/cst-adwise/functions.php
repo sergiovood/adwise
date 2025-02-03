@@ -33,6 +33,7 @@ function register_acf_blocks() {
 	register_block_type(THEME_PATH . '/inc/blocks/values-section');
 	register_block_type(THEME_PATH . '/inc/blocks/heading-block');
 	register_block_type(THEME_PATH . '/inc/blocks/image-reveal');
+	register_block_type(THEME_PATH . '/inc/blocks/testimonials-slider');
 }
 add_action('init', 'register_acf_blocks');
 
@@ -193,6 +194,7 @@ function cst_adwise_scripts() {
 		'cst-adwise-values' => THEME_URL . '/assets/css/blocks/values-section.css',
 		'cst-adwise-heading' => THEME_URL . '/assets/css/blocks/heading-block.css',
 		'cst-adwise-image-reveal', THEME_URL . '/assets/css/blocks/image-reveal.css',
+		'cst-adwise-testimonials', THEME_URL . '/assets/css/blocks/testimonials-slider.css',
     );
 
     // Dodawanie stylów w pętli
@@ -206,6 +208,7 @@ function cst_adwise_scripts() {
     }
 
     // Skrypty
+	// Podlaczenie biblioteki GSAP
     wp_enqueue_script('cst-adwise-navigation', THEME_URL . '/js/navigation.js', array(), $theme_version, true);
 	wp_enqueue_script(
         'gsap',
@@ -222,8 +225,9 @@ function cst_adwise_scripts() {
         '3.12.5',
         true
     );
+	// END GSAP
 
-    // Skrypt animacji
+    // Skrypt bloku animacji
     wp_enqueue_script(
         'cst-adwise-image-reveal',
         get_template_directory_uri() . '/assets/js/blocks/image-reveal.js',
@@ -231,6 +235,34 @@ function cst_adwise_scripts() {
         '1.0.0',
         true
     );
+
+	// Swiper CSS - dla testemoniali
+    wp_enqueue_style(
+        'swiper-css',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+        array(),
+        '11.0.0'
+    );
+
+    // Swiper JS - dla testemoniali
+    wp_enqueue_script(
+        'swiper-js',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+        array(),
+        '11.0.0',
+        true
+    );
+
+
+	// Customowy skrypt bloku slidera z referencjami
+	wp_enqueue_script(
+		'cst-adwise-testimonials',
+		get_template_directory_uri() . '/assets/js/blocks/testimonials-slider.js',
+		array('gsap'),
+		'1.0.0',
+		true
+	);
+
 
     // Obsługa wątkowanych komentarzy
     if (is_singular() && comments_open() && get_option('thread_comments')) {

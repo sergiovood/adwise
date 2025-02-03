@@ -1,5 +1,5 @@
 .values-section {
-    padding: 80px 0;
+    padding: 80px 0 0;
     background-color: #0F1219;
     color: #fff;
 }
@@ -46,8 +46,8 @@
 
 .value-item__number {
     font-family: 'ClashDisplay-Regular', sans-serif;
-    color: #7243E8;
-    font-size: 32px;
+    color: #7855DA;
+    font-size: 48px;
     display: block;
 }
 
@@ -60,11 +60,12 @@
 }
 
 .value-item__description {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
     margin: 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: #fff;
     max-width: 580px;
+    font-weight: 300;
 }
 
 /* RWD */
