@@ -5,12 +5,12 @@ $background_text = get_field('background_text');
 $testimonials = get_field('testimonials');
 ?>
 
-<section class="testimonials-slider">
+<section id="<?php echo $block['anchor']?>" class="testimonials-slider">
     <div class="testimonials-slider__container">
         <h2 class="testimonials-slider__title"><?php echo esc_html($title); ?></h2>
         
         <div class="testimonials-slider__content">
-            <!-- Lewa kolumna - 30% -->
+            <!-- Lewa kolumna -->
             <div class="testimonials-slider__image-col">
                 <?php if ($main_image): ?>
                     <div class="image-wrapper">
@@ -24,7 +24,7 @@ $testimonials = get_field('testimonials');
                 <?php endif; ?>
             </div>
 
-            <!-- Prawa kolumna - 70% -->
+            <!-- Prawa kolumna -->  
             <div class="testimonials-slider__quotes-col">
                 <div class="swiper testimonials-swiper">
                     <div class="swiper-wrapper">

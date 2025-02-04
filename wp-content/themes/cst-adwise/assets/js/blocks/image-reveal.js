@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Funkcja do określenia punktów startowych w zależności od szerokości ekranu
     function getStartPosition() {
         const windowWidth = window.innerWidth;
-        if (windowWidth > 1640) {
-            return '500px center'; // Później dla większych ekranów
+        if (windowWidth > 1920) {
+            return '100px center'; // Start dla większych ekranów
         }
         return '300px center'; // Standardowy start dla mniejszych ekranów
     }
@@ -15,12 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollTrigger: {
             trigger: '.image-reveal',
             start: getStartPosition(),
-            end: 'bottom bottom',
+            end: 'center center',
             scrub: 1.5, // Wolniejsza animacja
             onUpdate: function(self) {
                 if (self.progress > 0.85) {
                     gsap.set('.bg-section', {
-                        opacity: 1 - (self.progress - 0.85) * 20
+                        opacity: 1 - (self.progress - 0.85) * 5
                     });
                     if (self.progress > 0.95) {
                         gsap.set('.bg-image-under', { zIndex: 99 });
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Animacje
     tl.to('.bg-section', {
-        scale: 20, // Zmniejszony scale dla lepszego efektu
+        scale: 15, // Zmniejszony scale dla lepszego efektu
         duration: 1
     })
     .to('.bg-image-under', {

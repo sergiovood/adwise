@@ -5,6 +5,7 @@
     min-height: 80vh;
     display: flex;
     align-items: center;
+    background: linear-gradient(0deg, #0F1219 0%, rgba(15, 18, 25, 0) 100%);
 }
 
 .hero-section .container {
@@ -51,7 +52,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #7243E8;
+    background-color: #7855DA;
     color: #fff;
     padding: 16px 32px;
     border-radius: 100px;
@@ -73,6 +74,13 @@
 }
 
 /* RWD */
+
+@media (min-width: 1920px) {
+    .hero-section {
+        min-height: 50vh;
+    }
+}
+
 @media (max-width: 1440px) {
     .container {
         max-width: 1200px;

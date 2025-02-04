@@ -3,7 +3,7 @@ $pattern_image = get_field('pattern_image');
 $values_list = get_field('values_list');
 ?>
 
-<section class="values-section">
+<section id="<?php echo $block['anchor']?>" class="values-section">
     <div class="container">
         <div class="values-section__content">
             <div class="values-section__image">

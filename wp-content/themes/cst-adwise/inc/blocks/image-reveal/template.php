@@ -26,14 +26,14 @@ if (!$thumbnail && $video_type === 'youtube' && $youtube_id) {
     <div class="image-reveal__sticky-container">
         <div class="image-reveal__sticky-content">
             <!-- Maska -->
-            <div class="bg-section elementor-widget elementor-widget-image">
-                <div class="elementor-widget-container">
+            <div class="bg-section">
+                <div>
                     <img src="<?php echo esc_url($mask_image); ?>" alt="Mask" class="mask-image">
                 </div>
             </div>
 
             <!-- Video Overlay -->
-            <div class="bg-image-under elementor-absolute">
+            <div class="bg-image-under">
                 <div class="video-wrapper">
                     <div class="video-overlay" 
                          data-video-type="<?php echo esc_attr($video_type); ?>"
@@ -50,6 +50,7 @@ if (!$thumbnail && $video_type === 'youtube' && $youtube_id) {
                             </div>
                         <?php endif; ?>
                     </div>
+                    <div class="video-overlay-border"></div>
                 </div>
             </div>
         </div>
