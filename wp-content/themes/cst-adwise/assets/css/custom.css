@@ -1,27 +1,22 @@
  /* Video background */
-.background-video-wrapper {
+ .background-video-wrapper {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1440px;
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    pointer-events: none;
+
 }
 
 .background-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    
 }
-
 
 .background-video-wrapper::after {
     content: '';
@@ -30,5 +25,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: radial-gradient(55.01% 51.34% at 50.87% 45.06%, rgba(15, 18, 25, 0) 37.7%, #0F1219 100%);
+   
+}
+
+@media (max-width: 1440px) {
+    .background-video-wrapper {
+        width: 100%;
+    }
 }

@@ -46,16 +46,21 @@ if ($background_video): ?>
 
             <nav id="site-navigation" class="main-navigation">
                 <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                    <?php esc_html_e('Menu', 'cst-adwise'); ?>
+                    <svg width="32" height="25" viewBox="0 0 32 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line y1="0.5" x2="32" y2="0.5" stroke="white"/>
+                        <line y1="12.5" x2="32" y2="12.5" stroke="white"/>
+                        <line y1="24.5" x2="32" y2="24.5" stroke="white"/>
+                    </svg>
+                    <span class="screen-reader-text"><?php esc_html_e('Menu', 'cst-adwise'); ?></span>
                 </button>
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'menu-1',
                     'menu_id'        => 'primary-menu',
-					'fallback_cb'    => false,
+                    'fallback_cb'    => false,
                 ));
                 ?>
-            </nav>
+             </nav>
 
             <div class="header-buttons">
 				<a href="<?php echo esc_url(get_theme_mod('header_community_link', '#')); ?>" class="header-link">

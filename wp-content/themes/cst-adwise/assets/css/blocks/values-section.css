@@ -70,48 +70,41 @@
 
 /* RWD */
 @media (max-width: 1080px) {
-    .values-section__content {
-        grid-template-columns: 1fr;
-        gap: 60px;
+    .values-section .container {
+        padding: 0 61px;
     }
 
-    .values-section__image {
-        position: relative;
-        top: 0;
+    .values-section__content {
+        gap: 65px;
     }
 
     .values-section__list {
-        gap: 60px;
+        gap: 65px;
         padding: 0;
     }
 
-    .value-item__title {
-        font-size: 36px;
-    }
-
-    .value-item__number {
-        font-size: 28px;
-    }
-}
-
-@media (max-width: 390px) {
-    .values-section {
-        padding: 40px 0;
-    }
-
-    .values-section__list {
-        gap: 40px;
-    }
-
-    .value-item__title {
+    .value-item__title, .value-item__number {
         font-size: 32px;
-    }
-
-    .value-item__number {
-        font-size: 24px;
+		line-height: 39.36px;
     }
 
     .value-item__description {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .values-section__content {
+        grid-template-columns: 1fr;
+    }
+    .values-section__image {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 390px) {
+    .values-section .container{
+        padding: 0 32px;
     }
 }

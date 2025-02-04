@@ -38,17 +38,29 @@
 }
 
 @media (max-width: 1080px) {
+    .heading-block .container {
+        padding: 0 61px;
+    }
+
     .heading-block__content {
         font-size: 48px;
     }
 }
 
-@media (max-width: 390px) {
-    .heading-block {
-        padding: 40px 0;
-    }
-    
+@media (max-width: 768px) {
     .heading-block__content {
-        font-size: 36px;
+        font-size: 32px;
+		line-height: 39.36px;
+    }
+}
+
+
+@media (max-width: 390px) {
+    .heading-block .container {
+        padding: 0 32px;
+    }
+
+    .heading-block {
+        padding: 32px 0;
     }
 }

@@ -440,7 +440,7 @@ address {
 
 pre {
 	background: #eee;
-	font-family: "Courier 10 Pitch", courier, monospace;
+	font-family: "Nunito Sans", courier, monospace;
 	line-height: 1.6;
 	margin-bottom: 1.6em;
 	max-width: 100%;
@@ -469,6 +469,22 @@ ins {
 
 big {
 	font-size: 125%;
+}
+
+/* #RWD */
+
+@media (max-width: 768px) {
+	h1, h2, h3, h4, h5, h6 {
+		font-size: 32px;
+		line-height: 39.36px;
+
+	}
+
+	h5, h6 {
+		font-size: 21px;
+		line-height: 25.83px;
+
+	}
 }
 
 /* Elements
@@ -760,66 +776,138 @@ textarea {
 
 /* Mobile menu */
 .menu-toggle {
-    display: none;
-    background: transparent;
-    border: none;
-    color: #fff;
-    padding: 10px;
-    cursor: pointer;
-}
+	display: none;
+	background: transparent;
+	border: none;
+	color: #fff;
+	padding: 10px;
+	cursor: pointer;
+	z-index: 1001;
+	position: absolute;
+	top: 40px;
+	right: 40px;
+ }
+ 
+ .menu-toggle svg line {
+	transition: all 0.3s ease;
+ }
+ 
+ .main-navigation.toggled .menu-toggle svg line:nth-child(1) {
+	transform-origin: 3px;
+	transform: rotate(45deg);
+	y1: 12.5px;
+	y2: 12.5px;
+ }
+ 
+ .main-navigation.toggled .menu-toggle svg line:nth-child(2) {
+	opacity: 0;
+ }
+ 
+ .main-navigation.toggled .menu-toggle svg line:nth-child(3) {
+	transform-origin: 5px;
+	transform: rotate(-45deg);
+	y1: 12.5px;
+	y2: 12.5px;
+ }
+ 
+ /* RWD */
+ @media (max-width: 1080px) {
+	.site-header{
+		position: relative;
+		padding: 45px 40px 20px;
+	}
+	.main-navigation {
+		margin: 0;
+	}
+	
+	.main-navigation ul {
+		gap: 24px;
+	}
+	
+	.header-buttons {
+		display: none;
+	}
 
-/* RWD */
-@media (max-width: 1080px) {
-    .main-navigation ul {
-        gap: 24px;
-    }
-    
-    .header-buttons {
-        gap: 16px;
-    }
-}
+	.logo-img {
+		height: 21px;
+		width: auto;
+	}
 
-@media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
+	.menu-toggle {
+		display: block;
+	}
+ 
+	.main-navigation ul {
+		display: none;
+	}
+ 
+	.screen-reader-text {
+		clip: rect(1px, 1px, 1px, 1px);
+		position: absolute !important;
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
+	}
+ 
+	.main-navigation.toggled {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background: rgba(15, 18, 25, 0.98);
+		z-index: 1000;
+	}
+ 
+	.main-navigation.toggled ul {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		padding: 0;
+		margin-top: 100px;
+		background: none;
+	}
+ 
+	.main-navigation.toggled ul li {
+		margin: 12px 0;
+	}
+ 
+	.main-navigation.toggled ul li a {
+		font-size: 24px;
+		color: #fff;
+	}
+ 
+	.header-link {
+		display: none;
+	}
+	
+	.header-button {
+		padding: 10px 20px;
+	}
+ }
+ 
+ @media (min-width: 1081px) {
+	.menu-toggle {
+		display: none;
+	}
+ 
+	.main-navigation ul {
+		display: flex;
+	}
+ }
 
-    .main-navigation ul {
-        display: none;
-    }
+ @media (max-width: 768px) {
+	.menu-toggle {
+		right: 22px;
+	}
 
-    .main-navigation.toggled ul {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.9);
-        padding: 20px;
+	.site-header {
+        padding: 45px 20px 0px;
     }
+ }
 
-    .main-navigation.toggled ul li {
-        margin-bottom: 10px;
-    }
-
-    .header-link {
-        display: none;
-    }
-    
-    .header-button {
-        padding: 10px 20px;
-    }
-}
-
-@media screen and (min-width: 769px) {
-    .menu-toggle {
-        display: none;
-    }
-
-    .main-navigation ul {
-        display: flex;
-    }
-}
 
 /* Posts and pages
 --------------------------------------------- */
@@ -839,7 +927,8 @@ textarea {
 .page-content,
 .entry-content,
 .entry-summary {
-	background: radial-gradient(55.01% 51.34% at 50.87% 45.06%, rgba(15, 18, 25, 0) 37.7%, #0F1219 100%);
+	margin: 0;
+
 }
 
 .page-links {
@@ -1027,24 +1116,45 @@ textarea {
 }
 
 /* RWD */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 24px;
-        text-align: center;
-    }
-
-    .footer-navigation {
-        margin: 20px 0;
-        justify-content: center;
-    }
-
-    .footer-menu {
-        flex-direction: column;
-        gap: 16px;
-        align-items: center;
-    }
+@media (max-width: 1080px) {
+	.site-footer .container{
+		padding: 0 61px;
+	}
 }
+
+@media (max-width: 768px) {
+	.site-footer .container {
+		padding: 0 32px;
+	}
+ 
+	.footer-content {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 48px;
+	}
+ 
+	.footer-menu {
+		flex-direction: row;
+		gap: 32px;
+		align-items: flex-start;
+	}
+ 
+	.footer-menu a, .footer-policy-link {
+		font-size: 16px;
+	}
+ 
+	.footer-policy {
+		width: 100%;
+	}
+ 
+	.footer-logo {
+		width: 100%;
+	}
+ 
+	.footer-logo-img {
+		height: 100%;
+	}
+ }
 
 /*--------------------------------------------------------------
 # Plugins

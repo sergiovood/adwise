@@ -166,7 +166,19 @@
     }
 }
 
-@media (max-width: 768px) {
+
+
+@media (max-width: 1080px) {
+    .image-reveal{
+        height: 110vh;
+        padding: 25px;
+    }
+    .video-wrapper {
+        padding: 0;
+    }
+    .image-reveal__sticky-container{
+        height: auto;
+    }
     .image-reveal__sticky-content{
         top:0;
         transform: none;
@@ -184,4 +196,30 @@
         right: 0;
         top: -40px;
     }
+    .video-overlay{
+        height: auto;
+    }
+
+    .video-overlay-border{
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .image-reveal{
+        height: 80vh;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 390px) {
+    .mask-image{
+        scale: 1.35;
+    }
+
+    .image-reveal{
+        height: 60vh;
+        padding: 25px;
+    }
+ 
 }

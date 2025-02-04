@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             onUpdate: function(self) {
                 if (self.progress > 0.85) {
                     gsap.set('.bg-section', {
-                        opacity: 1 - (self.progress - 0.85) * 5
+                        opacity: 1 - (self.progress - 0.85) * 20
                     });
                     if (self.progress > 0.95) {
                         gsap.set('.bg-image-under', { zIndex: 99 });
