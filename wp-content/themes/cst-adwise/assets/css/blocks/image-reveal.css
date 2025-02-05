@@ -27,6 +27,10 @@
 }
 
 /* Maska */
+.bg-section, .bg-image-under {
+    will-change: transform, opacity;
+}
+
 .bg-section {
     position: absolute;
     top: 0;
@@ -219,7 +223,11 @@
 
     .image-reveal{
         height: 60vh;
-        padding: 25px;
+        padding: 10px;
+    }
+
+    .video-overlay-border{
+        margin: 4px 0;
     }
  
 }

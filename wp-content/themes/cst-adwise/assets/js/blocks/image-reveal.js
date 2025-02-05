@@ -1,27 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Funkcja do określenia punktów startowych w zależności od szerokości ekranu
-    function getStartPosition() {
-        const windowWidth = window.innerWidth;
-        if (windowWidth > 1920) {
-            return '100px center'; // Start dla większych ekranów
-        }
-        return '300px center'; // Standardowy start dla mniejszych ekranów
-    }
+    // Sprawdzenie czy urządzenie jest mobilne
+    const isMobile = window.innerWidth <= 768;
 
-    // Animacja maski i tła razem
+    // Konfiguracja animacji w zależności od rozmiaru ekranu
+    const config = {
+        scrubValue: isMobile ? 2.5 : 1.5,
+        scaleValue: isMobile ? 12 : 15,
+        start: isMobile ? 'top 80%' : '300px center', // Start na mobile
+        end: isMobile ? 'center 30%' : 'center center', 
+        smoothness: 0.3
+    };
+
+    // Główna animacja
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: '.image-reveal',
-            start: getStartPosition(),
-            end: 'center center',
-            scrub: 1.5, // Wolniejsza animacja
+            start: config.start,
+            end: config.end,
+            scrub: config.scrubValue,
+            markers: false,
             onUpdate: function(self) {
                 if (self.progress > 0.85) {
-                    gsap.set('.bg-section', {
-                        opacity: 1 - (self.progress - 0.85) * 20
-                    });
+                    const opacity = 1 - (self.progress - 0.85) * 20;
+                    gsap.set('.bg-section', { opacity });
+                    
                     if (self.progress > 0.95) {
                         gsap.set('.bg-image-under', { zIndex: 99 });
                     }
@@ -33,27 +37,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Ustawienie początkowego stanu
+    // Początkowy stan
     gsap.set(['.bg-section', '.bg-image-under'], {
         transformOrigin: 'center center',
         scale: 1
     });
 
-    // Animacje
+    // Animacja skalowania wraz z przewijaniem strony
     tl.to('.bg-section', {
-        scale: 15, // Zmniejszony scale dla lepszego efektu
-        duration: 1
+        scale: config.scaleValue,
+        duration: 1,
+        ease: "power1.inOut" 
     })
     .to('.bg-image-under', {
         scale: 0.9,
-        duration: 1
+        duration: 1,
+        ease: "power1.inOut" 
     }, 0);
-
-    // Obsługa resize
-    window.addEventListener('resize', () => {
-        ScrollTrigger.refresh();
-    });
-
 
     // Obsługa popupu wideo
     const videoOverlay = document.querySelector('.video-overlay');
@@ -61,14 +61,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoPopupPlayer = document.querySelector('.video-popup__player');
     const closeButton = document.querySelector('.video-popup__close');
 
-    if (videoOverlay && videoPopup && closeButton) {
-        // Otwieranie popupu
-        videoOverlay.addEventListener('click', function() {
-            const videoType = this.dataset.videoType;
-            const videoUrl = this.dataset.videoUrl;
-            const youtubeId = this.dataset.youtubeId;
+    // Funkcja inicjalizacji popupu
+    function initVideoPopup() {
+        if (!videoOverlay || !videoPopup || !closeButton) return;
 
-            // Przygotuj zawartość wideo
+        const preventAndClose = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closePopup();
+        };
+
+        const openPopup = function(e) {
+            e.preventDefault();
+            const videoType = this.getAttribute('data-video-type');
+            const videoUrl = this.getAttribute('data-video-url');
+            const youtubeId = this.getAttribute('data-youtube-id');
+            
             let videoContent = '';
             if (videoType === 'youtube' && youtubeId) {
                 videoContent = `
@@ -80,39 +88,54 @@ document.addEventListener('DOMContentLoaded', function() {
                     </iframe>`;
             } else if (videoType === 'file' && videoUrl) {
                 videoContent = `
-                    <video controls autoplay>
+                    <video controls autoplay playsinline>
                         <source src="${videoUrl}" type="video/webm">
                         Your browser does not support the video tag.
                     </video>`;
             }
 
-            // Wstaw wideo i pokaż popup
-            videoPopupPlayer.innerHTML = videoContent;
-            videoPopup.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Zablokuj scrollowanie strony
-        });
+            if (videoContent) {
+                videoPopupPlayer.innerHTML = videoContent;
+                videoPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        };
 
-        // Zamykanie popupu
-        function closePopup() {
+        const closePopup = () => {
             videoPopup.classList.remove('active');
-            videoPopupPlayer.innerHTML = ''; // Wyczyść player
-            document.body.style.overflow = ''; // Przywróć scrollowanie
-        }
+            videoPopupPlayer.innerHTML = '';
+            document.body.style.overflow = '';
+        };
 
-        closeButton.addEventListener('click', closePopup);
+        // Event listeners dla desktop i mobile
+        videoOverlay.addEventListener('click', openPopup);
+        videoOverlay.addEventListener('touchstart', openPopup);
         
-        // Zamykanie po kliknięciu poza wideo
-        videoPopup.addEventListener('click', function(e) {
+        // Obsługa zamykania popup
+        closeButton.addEventListener('click', preventAndClose);
+        closeButton.addEventListener('touchstart', preventAndClose);
+        closeButton.addEventListener('touchend', preventAndClose);
+        
+        // Zamykanie popupu po kliknięciu/dotknięciu tła
+        const handleBackgroundClick = (e) => {
             if (e.target === videoPopup) {
+                e.preventDefault();
+                e.stopPropagation();
                 closePopup();
             }
-        });
+        };
+        
+        videoPopup.addEventListener('click', handleBackgroundClick);
+        videoPopup.addEventListener('touchstart', handleBackgroundClick);
+        videoPopup.addEventListener('touchend', handleBackgroundClick);
 
-        // Zamykanie przez ESC
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && videoPopup.classList.contains('active')) {
                 closePopup();
             }
         });
     }
+
+    // Inicjalizacja popupu
+    initVideoPopup();
 });
