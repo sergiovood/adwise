@@ -407,6 +407,8 @@ textarea {
 	line-height: 1.5;
 	font-style: normal;
 	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -417,6 +419,8 @@ h5,
 h6 {
 	font-family: 'ClashDisplay-Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	clear: both;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 p {
@@ -659,6 +663,11 @@ textarea {
 /*--------------------------------------------------------------
 # Layouts
 --------------------------------------------------------------*/
+
+.custom-background{
+	background: linear-gradient(360deg, rgba(15, 18, 25, 0) 0%, #0F1219 100%);
+    padding: 10%;
+}
 
 /*--------------------------------------------------------------
 # Components
