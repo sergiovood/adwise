@@ -67,6 +67,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 html {
+	scroll-behavior: smooth;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 }
@@ -78,6 +79,8 @@ html {
  */
 body {
 	margin: 0;
+	-webkit-overflow-scrolling: touch;
+    overflow-y: auto;
 }
 
 /**
@@ -704,6 +707,8 @@ textarea {
 .logo-img {
     height: 39px;
     width: auto;
+	image-rendering: crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
 }
 
 /* Navigation */
@@ -840,6 +845,7 @@ textarea {
 	.logo-img {
 		height: 21px;
 		width: auto;
+		margin-top: 5px;
 	}
 
 	.menu-toggle {
@@ -1158,10 +1164,6 @@ textarea {
  
 	.footer-logo {
 		width: 100%;
-	}
- 
-	.footer-logo-img {
-		height: 100%;
 	}
  }
 
