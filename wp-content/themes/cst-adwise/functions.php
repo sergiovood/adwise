@@ -187,20 +187,21 @@ function cst_adwise_scripts() {
 
     // Lista stylów do załadowania
     $styles = array(
-        'cst-adwise-style' => get_stylesheet_uri(),
-        'cst-adwise-fonts' => THEME_URL . '/assets/css/fonts.css',
-		'cst-adwise-custom' => THEME_URL . '/assets/css/custom.css',
-        'cst-adwise-hero'  => THEME_URL . '/assets/css/blocks/hero-section.css',
-		'cst-adwise-values' => THEME_URL . '/assets/css/blocks/values-section.css',
-		'cst-adwise-heading' => THEME_URL . '/assets/css/blocks/heading-block.css',
-		'cst-adwise-image-reveal', THEME_URL . '/assets/css/blocks/image-reveal.css',
-		'cst-adwise-testimonials', THEME_URL . '/assets/css/blocks/testimonials-slider.css',
+        'cst-adwise-style'       => get_stylesheet_uri(),
+        'cst-adwise-fonts'       => THEME_URL . '/assets/css/fonts.css',
+        'cst-adwise-custom'      => THEME_URL . '/assets/css/custom.css',
+        'cst-adwise-hero'        => THEME_URL . '/assets/css/blocks/hero-section.css',
+        'cst-adwise-values'      => THEME_URL . '/assets/css/blocks/values-section.css',
+        'cst-adwise-heading'     => THEME_URL . '/assets/css/blocks/heading-block.css',
+        'cst-adwise-image-reveal' => THEME_URL . '/assets/css/blocks/image-reveal.css',
+        'cst-adwise-testimonials' => THEME_URL . '/assets/css/blocks/testimonials-slider.css',
     );
 
     // Dodawanie stylów w pętli
     foreach ($styles as $handle => $src) {
         wp_enqueue_style($handle, $src, array(), $theme_version);
     }
+
 
     // Dodanie obsługi RTL, jeśli strona używa języka RTL
     if (is_rtl()) {
@@ -209,7 +210,7 @@ function cst_adwise_scripts() {
 
     // Skrypty
 	// Podlaczenie biblioteki GSAP
-    wp_enqueue_script('cst-adwise-navigation', THEME_URL . '/js/navigation.js', array(), $theme_version, true);
+    wp_enqueue_script('cst-adwise-navigation', THEME_URL . '/assets/js/navigation.js', array(), $theme_version, true);
 	wp_enqueue_script(
         'gsap',
         'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
@@ -336,3 +337,12 @@ function sanitize_svg($file, $filename, $mimes, $real_mime) {
     return $file;
 }
 add_filter('wp_check_filetype_and_ext', 'sanitize_svg', 10, 4);
+
+// Dodanie klasy custom-background do postów//
+function add_custom_background_class($classes) {
+    if (!is_front_page()) {
+        $classes[] = 'custom-background';
+    }
+    return $classes;
+}
+add_filter('post_class', 'add_custom_background_class');
