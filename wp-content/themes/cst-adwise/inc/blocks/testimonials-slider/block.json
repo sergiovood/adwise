@@ -13,5 +13,14 @@
         "align": true,
         "anchor": true,
         "jsx": false
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "_is_preview": true,
+                "preview_image_help": "inc/blocks/testimonials-slider/preview.png"
+            }
+        }
     }
 }

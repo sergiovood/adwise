@@ -12,5 +12,14 @@
     "supports": {
         "align": true,
         "anchor": true
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "_is_preview": true,
+                "preview_image_help": "inc/blocks/values-section/preview.png"
+            }
+        }
     }
 }

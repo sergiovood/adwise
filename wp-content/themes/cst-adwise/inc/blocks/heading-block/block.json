@@ -8,5 +8,14 @@
     "acf": {
         "mode": "preview",
         "renderTemplate": "template.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "_is_preview": true,
+                "preview_image_help": "inc/blocks/heading-block/preview.png"
+            }
+        }
     }
 }

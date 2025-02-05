@@ -1,4 +1,12 @@
 <?php
+/**
+* Values Block Template.
+*/
+if (!empty($block['data']['_is_preview'])) {
+    echo '<img src="' . get_template_directory_uri() . '/inc/blocks/values-section/preview.png" alt="Preview" style="width:100%; height:auto;">';
+    return;
+}
+
 $pattern_image = get_field('pattern_image');
 $values_list = get_field('values_list');
 ?>

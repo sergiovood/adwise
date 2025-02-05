@@ -2,6 +2,10 @@
 /**
 * Hero Section Block Template.
 */
+if (!empty($block['data']['_is_preview'])) {
+    echo '<img src="' . get_template_directory_uri() . '/inc/blocks/hero-section/preview.png" alt="Preview" style="width:100%; height:auto;">';
+    return;
+}
 
 $heading = get_field('heading');
 $subheading = get_field('subheading');
@@ -39,4 +43,3 @@ $formatted_link = cst_adwise_format_link($cta_link);
        </div>
    </div>
 </section>
-

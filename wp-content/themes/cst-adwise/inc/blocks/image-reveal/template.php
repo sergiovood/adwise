@@ -1,4 +1,12 @@
 <?php
+/**
+* Image Reveal Block Template.
+*/
+if (!empty($block['data']['_is_preview'])) {
+    echo '<img src="' . get_template_directory_uri() . '/inc/blocks/image-reveal/preview.png" alt="Preview" style="width:100%; height:auto;">';
+    return;
+}
+
 $mask_image = get_field('mask_image');
 $video_type = get_field('video_type');
 $video_file = get_field('video_file');

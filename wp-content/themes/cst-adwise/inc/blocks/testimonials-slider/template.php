@@ -1,4 +1,13 @@
 <?php
+
+/**
+* Testimonials Block Template.
+*/
+if (!empty($block['data']['_is_preview'])) {
+    echo '<img src="' . get_template_directory_uri() . '/inc/blocks/testimonials-slider/preview.png" alt="Preview" style="width:100%; height:auto;">';
+    return;
+}
+
 $title = get_field('title');
 $main_image = get_field('main_image');
 $background_text = get_field('background_text');
