@@ -52,6 +52,9 @@ composer.lock
 *.sql
 *.sqlite
 *.db
+db.php
+upgrade-temp-backup/
+backups-dup-lite
 
 # 🛑 Ignorowanie wiekszych plikow graficznych
 *.png size>500kb
