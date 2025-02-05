@@ -26,8 +26,18 @@
 $background_video = get_field('background_video', 'option');
 if ($background_video): ?>
     <div class="background-video-wrapper">
-        <video class="background-video" playsinline autoplay muted loop>
+        <video class="background-video" 
+            playsinline 
+            webkit-playsinline
+            autoplay 
+            muted 
+            loop
+            preload="auto"
+            defaultMuted
+            poster="<?php echo esc_url(get_field('video_poster', 'option')); ?>"
+        >
             <source src="<?php echo esc_url($background_video); ?>" type="video/webm">
+            <source src="<?php echo esc_url(str_replace('.webm', '.mp4', $background_video)); ?>" type="video/mp4">
         </video>
     </div>
 <?php endif; ?>
