@@ -113,10 +113,6 @@
 }
 
 @media (max-width: 768px) {
-    .hero-section .container {
-        padding: 0 32px;
-    }
-
     .hero-heading{
         font-size: 32px;
 		line-height: 39.36px;
@@ -124,6 +120,10 @@
 }
 
 @media (max-width: 390px) {
+    .hero-section .container {
+        padding: 0 32px;
+    }
+
     .hero-section {
         padding: 90px 0 40px;
     }
